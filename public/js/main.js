@@ -2,6 +2,8 @@ const socket=io();
 
 const chatForm=document.getElementById("chat-form");
 const chatMessages=document.querySelector('.chat-messages');
+const roomName=document.getElementById('room-name');
+const roomList=document.getElementById('users');
 
 // on receiving message
 const {username,room}=Qs.parse(location.search,{
@@ -13,6 +15,14 @@ console.log({username,room});
 // Always join room when javascript file loaded connection is autoatically called
 
 socket.emit('joinRoom',username,room);
+
+
+socket.on('roomUsers',({room,users})=>{
+    outputRoomName(room);
+    outputRoomUsers(users);
+});
+
+
 
 socket.on('message',(message)=>{
     console.log(message);
@@ -44,4 +54,24 @@ function outputMessage(msg)
         ${msg.message}
     </p>`
     document.querySelector('.chat-messages').append(div);
+}
+
+function outputRoomName(room)
+{
+    roomName.innerText=room;
+}
+
+function outputRoomUsers(users)
+{   
+    roomList.innerHTML='';
+    for (var i = 0; i < users.length; i++) {
+        // Create the list item:
+        var item = document.createElement('li');
+
+        // Set its contents:
+        item.innerHTML=users[i].name;
+
+        // Add it to the list:
+        roomList.appendChild(item);
+    }
 }
