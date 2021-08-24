@@ -4,6 +4,15 @@ const chatForm=document.getElementById("chat-form");
 const chatMessages=document.querySelector('.chat-messages');
 
 // on receiving message
+const {username,room}=Qs.parse(location.search,{
+    ignoreQueryPrefix:true
+}); 
+
+console.log({username,room});
+
+// Always join room when javascript file loaded connection is autoatically called
+
+socket.emit('joinRoom',username,room);
 
 socket.on('message',(message)=>{
     console.log(message);
@@ -30,9 +39,9 @@ function outputMessage(msg)
 {
     const div=document.createElement('div');
     div.classList.add('message');
-    div.innerHTML=`	<p class="meta">Brad <span>9:12pm</span></p>
+    div.innerHTML=`	<p class="meta">${msg.user} <span>${msg.time}</span></p>
     <p class="text">
-        ${msg}
+        ${msg.message}
     </p>`
     document.querySelector('.chat-messages').append(div);
 }
