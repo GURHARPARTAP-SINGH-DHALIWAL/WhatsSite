@@ -4,7 +4,7 @@ const path=require('path');
 const socketio=require('socket.io');
 const port=process.env.PORT||8000;
 const {formatMessage}=require('./utils/messages');
-const {addUser,findUserById}=require('./utils/users');
+const {addUser,findUserById,userLeave,usersInRoom}=require('./utils/users');
 
 const admin='Admin-GSD';
 const app=express();
@@ -37,6 +37,11 @@ io.on('connection',  socket=>{
     // braodcast to every client except the one who made the request
     socket.broadcast.to(user.room).emit('message',formatMessage(admin,`${user.name} has joined the chat`));
 
+    io.to(user.room).emit('roomUsers',{
+        room:user.room,
+        users:usersInRoom(user.room)
+    });
+
 
 
 
@@ -50,7 +55,16 @@ io.on('connection',  socket=>{
 
     // to evry client
     socket.on('disconnect',()=>{
-        const user=findUserById(socket.id);
+        const user=userLeave(socket.id);
+
+        // to set all users in a room 
+        io.to(user.room).emit('roomUsers',{
+            room:user.room,
+            users:usersInRoom(user.room)
+        });
+
+        
+       
         io.to(user.room).emit('message',formatMessage(admin,`${user.name} has left the chat`));
     });
 
@@ -58,7 +72,7 @@ io.on('connection',  socket=>{
 
     socket.on('chatMessage',msg=>{  
         const user=findUserById(socket.id); 
-        console.log(user); 
+        console.log(user);
         io.to(user.room).emit('message',formatMessage(user.name, msg)); 
     });
 

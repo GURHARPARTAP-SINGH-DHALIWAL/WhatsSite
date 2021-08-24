@@ -21,4 +21,21 @@ function findUserById(id)
     const user=users.find((user)=>id===user.id);
     return user;
 }
-module.exports={addUser,findUserById};
+
+
+function userLeave(id)
+{
+    const index=users.findIndex(user=>user.id===id);
+    if(index!=-1){
+    const user=users[index];
+    users.splice(index,1);
+    return user;
+}
+}
+
+function usersInRoom(room)
+{
+    return users.filter(user=>user.room===room);
+}
+
+module.exports={addUser,findUserById,userLeave,usersInRoom};
