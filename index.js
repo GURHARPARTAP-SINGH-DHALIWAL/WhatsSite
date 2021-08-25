@@ -84,6 +84,7 @@ io.on('connection',  socket=>{
     socket.on('chatMessage',msg=>{  
         const user=findUserById(socket.id); 
         console.log(user);
+        if(user)
         io.to(user.room).emit('message',formatMessage(user.name, msg)); 
     });
 
