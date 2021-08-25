@@ -49,7 +49,9 @@ function outputMessage(msg)
 {
     const div=document.createElement('div');
     div.classList.add('message');
-    div.innerHTML=`	<p class="meta">${msg.user} <span>${msg.time}</span></p>
+     div.classList.add('bg-light');
+
+    div.innerHTML=`	<p class="meta"><span>${msg.user}</span> <span>${msg.time}</span></p>
     <p class="text">
         ${msg.message}
     </p>`

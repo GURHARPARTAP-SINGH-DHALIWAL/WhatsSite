@@ -35,6 +35,7 @@ a {
 	background: var(--light-color);
 	color: var(--dark-color-a);
 	border: 0;
+	color: #fff;
 	font-size: 17px;
 }
 
@@ -58,6 +59,9 @@ a {
 	justify-content: space-between;
 }
 
+.logo{
+	color: #e6e9ff;
+}
 .chat-main {
 	display: grid;
 	grid-template-columns: 1fr 3fr;
@@ -96,6 +100,8 @@ a {
 	margin-bottom: 15px;
 	background-color: var(--light-color);
 	border-radius: 5px;
+	color: black;
+	background-color: #25D366;
 }
 
 .chat-messages .message .meta {

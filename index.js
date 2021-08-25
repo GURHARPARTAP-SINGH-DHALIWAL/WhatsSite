@@ -27,9 +27,10 @@ io.on('connection',  socket=>{
         console.log('here',name,room,socket.id);
 
       
-        console.log('added');
+      
         socket.join(room);
         const user=addUser(socket.id,name,room);
+        console.log('added-->',user);
 
          // Sedn to client who sene the request
     socket.emit('message',formatMessage(admin,'welcome to WhatsSite'));
@@ -58,14 +59,18 @@ io.on('connection',  socket=>{
         const user=userLeave(socket.id);
 
         // to set all users in a room 
+        if(user){
+        console.log('left-->',user);
+            
         io.to(user.room).emit('roomUsers',{
             room:user.room,
             users:usersInRoom(user.room)
         });
-
+  
         
        
         io.to(user.room).emit('message',formatMessage(admin,`${user.name} has left the chat`));
+    }
     });
 
     // Receives chat message

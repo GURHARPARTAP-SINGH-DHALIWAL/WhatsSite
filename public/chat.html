@@ -4,19 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://bootswatch.com/5/quartz/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
-  <title>ChatCord App</title>
+  <title>WhatsSite</title>
 </head>
 <body>
-  <div class="chat-container">
-    <header class="chat-header">
-      <h1><i class="fas fa-smile"></i> ChatCord</h1>
-      <a href="index.html" class="btn">Leave Room</a>
+  <div class="chat-container bg-active">
+    <header class="chat-header bg-dark">
+      <h1><i class="fas fa-laptop"></i> WhatsSite</h1>
+      <a href="index.html" class="btn bg-light" style="color: black;">Leave Room</a>
     </header>
     <main class="chat-main">
-      <div class="chat-sidebar">
+      <div class="chat-sidebar bg-dark">
         <h3><i class="fas fa-comments"></i> Room Name:</h3>
-        <h2 id="room-name"></h2>
+        <h2 id="room-name" class="bg-light" style="color: black;"></h2>
         <h3><i class="fas fa-users"></i> Users</h3>
         <ul id="users">
         
@@ -27,7 +28,7 @@
 				
       </div>
     </main>
-    <div class="chat-form-container">
+    <div class="chat-form-container bg-dark">
       <form id="chat-form">
         <input
           id="msg"
@@ -36,10 +37,15 @@
           required
           autocomplete="off"
         />
-        <button class="btn"><i class="fas fa-paper-plane"></i> Send</button>
+        <button class="btn bg-light" style="color: black;"><i class="fas fa-paper-plane"></i> Send</button>
       </form>
     </div>
   </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js" integrity="sha512-aTKlYRb1QfU1jlF3k+aS4AqTpnTXci4R79mkdie/bp6Xm51O5O3ESAYhvg6zoicj/PD6VYY0XrYwsWLcvGiKZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="js/main.js"></script>
