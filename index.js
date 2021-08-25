@@ -74,6 +74,12 @@ io.on('connection',  socket=>{
     });
 
     // Receives chat message
+    socket.on('typing',(username)=>{
+        const user=findUserById(socket.id); 
+        console.log(user);
+        if(user)
+        socket.broadcast.to(user.room).emit('typing',`${username} is typing...`);
+    });
 
     socket.on('chatMessage',msg=>{  
         const user=findUserById(socket.id); 

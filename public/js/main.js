@@ -9,6 +9,17 @@ const roomList=document.getElementById('users');
 const {username,room}=Qs.parse(location.search,{
     ignoreQueryPrefix:true
 }); 
+ 
+const typing=document.getElementById('typing');
+
+socket.on('typing',(message)=>{
+    typing.innerText=message;
+});
+
+
+chatForm.addEventListener('keypress',()=>{
+    socket.emit('typing',username);
+});
 
 console.log({username,room});
 
@@ -27,6 +38,7 @@ socket.on('roomUsers',({room,users})=>{
 socket.on('message',(message)=>{
     console.log(message);
     outputMessage(message);
+    typing.innerText='';
 
     chatMessages.scrollTop=chatMessages.scrollHeight;
 
