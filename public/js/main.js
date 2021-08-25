@@ -38,7 +38,7 @@ socket.on('roomUsers',({room,users})=>{
 socket.on('message',(message)=>{
     console.log(message);
     outputMessage(message);
-    typing.innerText='';
+    typing.innerText=room;
 
     chatMessages.scrollTop=chatMessages.scrollHeight;
 
