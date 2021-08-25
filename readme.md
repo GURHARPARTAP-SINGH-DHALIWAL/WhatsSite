@@ -1,4 +1,4 @@
-# WhatsSite[https://whatssite.herokuapp.com/]
+# [WhatsSite](https://whatssite.herokuapp.com/)
 
 A realtime Chat App developed using Node.js, Express, Socket.io
 
